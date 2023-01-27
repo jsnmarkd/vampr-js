@@ -49,10 +49,7 @@ class Vampire {
   // * when comparing Ansel and Andrew, Ansel is the closest common anscestor.
   closestCommonAncestor(vampire) {
     let currentVampire = this;
-    if (!vampire.creator) {
-      return vampire;
-    }
-    if (currentVampire.creator === vampire) {
+    if (!vampire.creator || currentVampire.creator === vampire) {
       return vampire;
     }
     return currentVampire;
