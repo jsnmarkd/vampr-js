@@ -29,6 +29,11 @@ class Vampire {
     }
     return numberOfVampires;
   }
+  // Recursion upwards - Leaf node to Root node
+  // if (!this.creator) {
+  //   return 0;
+  // }
+  // return 1 + this.creator.numberOfVampiresFromOriginal;
 
   // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
   isMoreSeniorThan(vampire) {
@@ -44,7 +49,19 @@ class Vampire {
 
   // Returns the vampire object with that name, or null if no vampire exists with that name
   vampireWithName(name) {
-    
+    // Recursion downwards - Root node to Leaf node
+    if (this.name === name) {
+      return this;
+    }
+
+    for (const child of this.offspring) {
+      const found = child.vampireWithName(name);
+      if (found) {
+        return found;
+      }
+    }
+
+    return null;
   }
 
   // Returns the total number of vampires that exist
