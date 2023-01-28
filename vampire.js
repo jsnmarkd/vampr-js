@@ -66,7 +66,11 @@ class Vampire {
 
   // Returns the total number of vampires that exist
   get totalDescendents() {
-    
+    let count = 0;
+    for (const child of this.offspring) {
+      count += child.totalDescendents + 1;
+    }
+    return count;
   }
 
   // Returns an array of all the vampires that were converted after 1980
