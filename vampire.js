@@ -75,7 +75,18 @@ class Vampire {
 
   // Returns an array of all the vampires that were converted after 1980
   get allMillennialVampires() {
+    let vampires = [];
     
+    if (this.yearConverted > 1980) {
+      vampires.push(this);
+    }
+
+    for (const child of this.offspring) {
+      // console.log(child.allMillennialVampires);
+      vampires = vampires.concat(child.allMillennialVampires);
+    }
+    console.log(vampires);
+    return vampires;
   }
 
   /** Stretch **/
